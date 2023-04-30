@@ -1,33 +1,33 @@
 @extends('layouts.app')
-@section('title', 'Etudiant')
+@section('title', 'Repertoire - Welcome')
 @section('content')
     <div class="row mt-5">
         <div class="col-12">
-            <a href="{{route('etudiant.index')}}" class="btn btn-primary btn-sm" >Return</a>
-            @if ($etudiant)
+            <a href="{{route('repertoire.page')}}" class="btn btn-primary btn-sm" >Return</a>
             <h2 class="display-8 pt-3">
-                {{ $etudiant->name}}
+                {!! $repertoire->title !!}
+                {!! $repertoire->title_fr !!}
             </h2>
             <hr>
-              <p>Addresse: {!! $etudiant->adresse !!}</p>
-              <p>Telephone: {{ $etudiant->phone}}</p>
-              <p>Courriel: {{ $etudiant->email}}</p>
-              <p>Date de naissance: {{ $etudiant->date_de_naissance}}</p>
-              <p>Ville: {{ $etudiant->ville->name }}</p>
-              
-              @else
-                <p>Etudiant not found</p>
-              @endif
+                {!! $repertoire->created_at !!}
+                <p>
+                    Author : {{ $repertoire->repertoireHasUser->name }}
+                </p>
+                
             <hr>
         </div>
     </div>
     <div class="row text-center">
-        <div class="col-md-6">
-        <a href="{{ route('etudiant.edit', $etudiant->id)}}" class="btn btn-success btn-sm">Modifier</a>
+    @if (Auth::user() && Auth::user()->id == $repertoire->user_id)
+    <div class="col-md-6">
+            <a href="{{ route('repertoire.edit', $repertoire->id)}}" class="btn btn-success btn-sm">Modifier</a>
         </div>
+        
         <div class="col-md-6">
                 <input type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalDelete" value="Effacer">
         </div>
+       
+        @endif
     </div>
 
 
@@ -40,7 +40,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you to delete the  : {{ $etudiant->name }}
+        Are you sure to delete the repertoire : {{ $repertoire->title }}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

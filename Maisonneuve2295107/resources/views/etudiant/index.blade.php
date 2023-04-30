@@ -10,7 +10,7 @@
         <hr>
         <div class="col-md-8">
             <p>
-            Cliquez sur chaque élève pour supprimer ou modifier
+          
             </p>
         </div>
         <div class="col-md-4">
@@ -26,7 +26,7 @@
                 <div class="card-body">
                     <ul>
                     @forelse($etudiants as $etudiant)
-                        <li> <a href="{{route('etudiant.show', $etudiant->id)}}">{{ $etudiant->nom }}</a></li>
+                        <li> <a href="{{route('etudiant.show', $etudiant->id)}}">{{ $etudiant->name }}</a></li>
                     @empty
                         <li class="text-danger">Il n'y a pas d'étudiant</li>
                     @endforelse

@@ -6,9 +6,9 @@
 <header class="masthead text-center text-white">
             <div class="masthead-content">
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-0">Collège Maisonneuve</h1>
-                    <h2 class="masthead-subheading mb-0">Gestion des informations des étudiants</h2>
-                    <a href="{{route('etudiant.index')}}" class="btn btn-primary btn-lg ">Entrer</a>
+                    <h1 class="masthead-heading mb-0">@lang('lang.text_maisonneuveCollege')</h1>
+                    <h2 class="masthead-subheading mb-0">@lang('lang.text-page-accueil')</h2>
+                    <a href="{{route('etudiant.index')}}" class="btn btn-primary btn-lg ">@lang('lang.text-enter')</a>
                 </div>
             </div>
             <div class="bg-circle-1 bg-circle"></div>

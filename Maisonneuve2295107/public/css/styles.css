@@ -10921,3 +10921,10 @@ header.masthead .bg-circle-4 {
   }
 }
 
+.page-blade-a{
+  color: #101214;
+}
+
+.page-blade-a a{
+  color: navy;
+}

@@ -1,12 +1,11 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\Ville;
-use App\Models\Etudiant;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class VilleFactory extends Factory
+class ArticleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,8 +15,9 @@ class VilleFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->city()
-           
+            'title' => $this->faker->sentence,
+            'body' => $this->faker-> paragraph(30),
+            'user_id' => User::factory()
         ];
     }
 }

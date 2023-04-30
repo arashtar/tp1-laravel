@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 use App\Models\Ville;
 use App\Models\Etudiant;
+use App\Models\Category;
+use App\Models\Repertoire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EtudiantController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,10 +34,10 @@ class EtudiantController extends Controller
      */
     public function create(Etudiant $etudiant)
     {
-       
+        $categories = Category::categorySelect();
      
         $villes = Ville::all();
-        return view('etudiant.create', compact('etudiant', 'villes'));
+        return view('etudiant.create',['categories' => $categories], compact('etudiant', 'villes'));
     }
 
     /**
@@ -44,12 +50,14 @@ class EtudiantController extends Controller
     {
        
         $etudiant = Etudiant::create([
-            'nom' => $request->nom,
+            'name' => $request->name,
             'adresse' => $request->adresse,
             'phone' => $request->phone,
             'email' => $request->email,
             'date_de_naissance' => $request->date_de_naissance,
-            'ville_id' => $request->ville_id
+            'ville_id' => $request->ville_id,
+            'user_id' => Auth::user()->id,
+            'categories_id' => $request->categories_id
        ]);
 
     return redirect(route('etudiant.show', $etudiant->id))->withSuccess('Post inserted');
@@ -78,8 +86,10 @@ class EtudiantController extends Controller
      */
     public function edit(Etudiant $etudiant)
     {
+        $categories = Category::categorySelect();
+
         $villes = Ville::all();
-        return view('etudiant.edit', ['etudiant'=>$etudiant, 'villes' =>$villes]);
+        return view('etudiant.edit', ['etudiant'=>$etudiant, 'villes' =>$villes, 'categories' => $categories]);
         //return view('etudiant.edit', compact('etudiant', 'villes'));
     }
 
@@ -93,12 +103,13 @@ class EtudiantController extends Controller
     public function update(Request $request, Etudiant $etudiant)
     {
         $etudiant->update([
-            'nom' => $request->nom,
+            'name' => $request->name,
             'adresse' => $request->adresse,
             'phone' => $request->phone,
             'email' => $request->email,
             'date_de_naissance' => $request->date_de_naissance,
-            'ville_id' => $request->ville_id
+            'ville_id' => $request->ville_id,
+            'categories_id' => $request->categories_id
 
         ]);
 

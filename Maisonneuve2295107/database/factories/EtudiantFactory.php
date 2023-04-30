@@ -17,12 +17,13 @@ class EtudiantFactory extends Factory
     public function definition()
     {
         return [
-            'nom' =>  $this->faker->name(),
+            'name' =>  $this->faker->name(),
             'adresse' => $this->faker-> address,
             'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->unique()->safeEmail(),
             'date_de_naissance' => $this->faker->dateTimeBetween('-50 years', '-18 years')->format('Y-m-d'),
-            'ville_id' => Ville::factory()
+            'ville_id' => Ville::factory(),
+            'user_id' => User::factory()
         ];
     }
 }

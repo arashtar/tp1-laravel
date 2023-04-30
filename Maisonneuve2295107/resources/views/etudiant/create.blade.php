@@ -20,7 +20,7 @@ Formulaire
 <div class="card-body">
 <div class="mb-3">
 <label for="name" class="form-label">Nom de l'étudiant</label>
-<input type="text" id="name" name="nom" class="form-control">
+<input type="text" id="name" name="name" class="form-control">
 </div>
 <div class="mb-3">
                         <label for="adresse" class="form-label">Adresse</label>
@@ -31,7 +31,7 @@ Formulaire
                         <label for="ville_id" class="form-label">Choisissez une ville:</label>
                         <select name="ville_id" id="ville_id" class="form-select">
                             @foreach($villes as $ville)
-                                <option value="{{ $ville->id }}" @if($ville->id == $etudiant->ville_id) selected @endif>{{ $ville->nom }}</option>
+                                <option value="{{ $ville->id }}" @if($ville->id == $etudiant->ville_id) selected @endif>{{ $ville->name }}</option>
                             @endforeach
                         </select>
                     </div>

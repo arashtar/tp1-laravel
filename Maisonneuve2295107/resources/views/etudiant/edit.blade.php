@@ -21,7 +21,7 @@
                         <div class="card-body">   
                                 <div class="control-grup col-12">
                                     <label for="name">Nom de l'étudiant</label>
-                                    <input type="text" id="name" name="nom" class="form-control" value="{{ $etudiant->nom }}">
+                                    <input type="text" id="name" name="name" class="form-control" value="{{ $etudiant->name }}">
                                 </div>
                                 
                                 <div class="control-grup col-12">
@@ -34,7 +34,7 @@
                                     <label for="ville_id">Choisissez une ville:</label>
                                     <select name="ville_id" id="ville_id" class="form-control">
                                         @foreach($villes as $ville)
-                                            <option value="{{ $ville->id }}" @if($ville->id == $etudiant->ville_id) selected @endif>{{ $ville->nom }}</option>
+                                            <option value="{{ $ville->id }}" @if($ville->id == $etudiant->ville_id) selected @endif>{{ $ville->name }}</option>
                                                 {{ $ville->name }}
                                             </option>
                                         @endforeach
